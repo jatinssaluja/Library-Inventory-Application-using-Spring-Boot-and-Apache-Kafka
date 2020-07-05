@@ -47,7 +47,7 @@ public class LibraryEventsControllerUnitTest {
                 .build();
 
         String json = objectMapper.writeValueAsString(libraryEvent);
-        doNothing().when(libraryEventProducer).sendLibraryEvent(isA(LibraryEvent.class));
+        when(libraryEventProducer.sendLibraryEvent(isA(LibraryEvent.class))).thenReturn(null);
 
         //expect
         mockMvc.perform(post("/v1/libraryevent")
@@ -73,7 +73,7 @@ public class LibraryEventsControllerUnitTest {
                 .build();
 
         String json = objectMapper.writeValueAsString(libraryEvent);
-        doNothing().when(libraryEventProducer).sendLibraryEvent(isA(LibraryEvent.class));
+        when(libraryEventProducer.sendLibraryEvent(isA(LibraryEvent.class))).thenReturn(null);
 
         //expect
         String expectedErrorMessage = "book.bookAuthor - must not be blank, book.bookId - must not be null";
